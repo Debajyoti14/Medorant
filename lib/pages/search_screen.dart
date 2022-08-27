@@ -326,7 +326,12 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recent Search'),
+        title: Text(
+          'Recent Search',
+          style: TextStyle(color: const Color(0xFF706FE5), fontSize: 26),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
       // drawer: AppDrawer(),
       body: SingleChildScrollView(

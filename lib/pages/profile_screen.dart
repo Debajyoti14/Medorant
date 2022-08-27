@@ -9,13 +9,20 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10),
+      appBar: AppBar(
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: Color(0xFF706FE5), fontSize: 26),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(
-              height: 60,
+              height: 20,
             ),
             ListTile(
               leading: const CircleAvatar(
@@ -30,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
               subtitle: const Text('Roshan'),
               trailing: RaisedButton(
                 onPressed: () {},
-                color: const Color.fromARGB(255, 112, 111, 229),
+                color: const Color(0xFF706FE5),
                 child: const Text(
                   'Edit',
                   style: TextStyle(fontSize: 18, color: Colors.white),
@@ -38,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.all(20),
