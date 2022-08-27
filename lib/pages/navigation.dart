@@ -62,25 +62,21 @@ class _NavigationState extends State<Navigation> {
 
     getDetails(widget.args);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme(context),
-      home: Scaffold(
-        body: screens[index],
-        bottomNavigationBar: Theme(
-          data: Theme.of(context)
-              .copyWith(iconTheme: const IconThemeData(color: Colors.white)),
-          child: CurvedNavigationBar(
-            key: navigationKey,
-            height: 60,
-            index: index,
-            items: items,
-            onTap: (index) => setState(() => this.index = index),
-            color: const Color.fromARGB(255, 112, 111, 229),
-            backgroundColor: Colors.transparent,
-            animationCurve: Curves.easeIn,
-            animationDuration: const Duration(milliseconds: 100),
-          ),
+    return Scaffold(
+      body: screens[index],
+      bottomNavigationBar: Theme(
+        data: Theme.of(context)
+            .copyWith(iconTheme: const IconThemeData(color: Colors.white)),
+        child: CurvedNavigationBar(
+          key: navigationKey,
+          height: 60,
+          index: index,
+          items: items,
+          onTap: (index) => setState(() => this.index = index),
+          color: const Color.fromARGB(255, 112, 111, 229),
+          backgroundColor: Colors.transparent,
+          animationCurve: Curves.easeIn,
+          animationDuration: const Duration(milliseconds: 100),
         ),
       ),
     );

@@ -5,7 +5,6 @@ import '../api/google_signin_api.dart';
 import 'login_personal_data.dart';
 import 'dart:convert';
 
-import 'main_home.dart';
 import 'navigation.dart';
 
 class LoginScreen extends StatefulWidget {

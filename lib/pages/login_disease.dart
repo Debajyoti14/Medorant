@@ -82,105 +82,103 @@ class _LoginDiseaseState extends State<LoginDisease> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)?.settings.arguments;
-    return MaterialApp(
-      home: Scaffold(
-          body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 170,
+    return Scaffold(
+        body: SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 170,
+            ),
+            Text(
+              'Do you Have a disease?',
+              style: TextStyle(
+                color: AppTheme.lightTheme(context).primaryColor,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
-              Text(
-                'Do you Have a disease?',
-                style: TextStyle(
-                  color: AppTheme.lightTheme(context).primaryColor,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            // TextFormField(
+            //   decoration: const InputDecoration(
+            //     labelText: "Disease",
+            //     border: OutlineInputBorder(),
+            //   ),
+            //   controller: diseaseList,
+            //   validator: (value) {
+            //     if (value!.isEmpty) {
+            //       return "Username cant be Empty";
+            //     } else {
+            //       return null;
+            //     }
+            //   },
+            //   onFieldSubmitted: doSomething,
+            // ),
+            DropdownButton<String>(
+              hint: const Text('Diseases'), // Not necessary for Option 1
+              items: diseases.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (val) {
+                setState(() {
+                  doSomething(val);
+                });
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: const EdgeInsets.all(5),
+              height: 164,
+              width: double.infinity,
+              child: SizedBox(
+                height: double.infinity,
+                child: Wrap(
+                  children: tags.map((d) {
+                    return Tags(d);
+                  }).toList(),
                 ),
               ),
-              const SizedBox(
-                height: 20,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(
+                  width: 1,
+                  color: const Color.fromARGB(255, 148, 114, 232),
+                ),
               ),
-              // TextFormField(
-              //   decoration: const InputDecoration(
-              //     labelText: "Disease",
-              //     border: OutlineInputBorder(),
-              //   ),
-              //   controller: diseaseList,
-              //   validator: (value) {
-              //     if (value!.isEmpty) {
-              //       return "Username cant be Empty";
-              //     } else {
-              //       return null;
-              //     }
-              //   },
-              //   onFieldSubmitted: doSomething,
-              // ),
-              DropdownButton<String>(
-                hint: const Text('Diseases'), // Not necessary for Option 1
-                items: diseases.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        const Color.fromARGB(255, 148, 114, 232))),
+                onPressed: () {
+                  sendData(args as String);
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => Navigation(args),
+                      // settings: RouteSettings(arguments: args),
+                    ),
                   );
-                }).toList(),
-                onChanged: (val) {
-                  setState(() {
-                    doSomething(val);
-                  });
                 },
+                child: const Text('Submit'),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.all(5),
-                height: 164,
-                width: double.infinity,
-                child: SizedBox(
-                  height: double.infinity,
-                  child: Wrap(
-                    children: tags.map((d) {
-                      return Tags(d);
-                    }).toList(),
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    width: 1,
-                    color: const Color.fromARGB(255, 148, 114, 232),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          const Color.fromARGB(255, 148, 114, 232))),
-                  onPressed: () {
-                    sendData(args as String);
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => Navigation(args),
-                        // settings: RouteSettings(arguments: args),
-                      ),
-                    );
-                  },
-                  child: const Text('Submit'),
-                ),
-                width: double.infinity,
-                height: 40,
-              ),
-            ],
-          ),
+              width: double.infinity,
+              height: 40,
+            ),
+          ],
         ),
-      )),
-    );
+      ),
+    ));
   }
 }
