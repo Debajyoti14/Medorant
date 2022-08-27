@@ -28,7 +28,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
         height: 60,
         index: index,
         items: items,
-        onTap: (index) => setState(() => this.index = index),
+        onTap: (index) => {
+          if (mounted) setState(() => this.index = index),
+        },
         color: const Color.fromARGB(255, 112, 111, 229),
         backgroundColor: Colors.transparent,
         animationCurve: Curves.easeIn,

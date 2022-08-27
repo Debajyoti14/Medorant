@@ -6,6 +6,7 @@ import 'login_personal_data.dart';
 import 'dart:convert';
 
 import 'main_home.dart';
+import 'navigation.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/welcome-screen';
@@ -27,10 +28,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
       sendData(String id) async {
         try {
-          final response = await http.get(Uri.parse(
-              'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user/$id'));
+          final url =
+              'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user/$id';
+          final response = await http.get(Uri.parse(url));
           final getResponse = json.decode(response.body);
-          if (getResponse.length == 0) {
+          print(getResponse[0]['disease'].length);
+          if (getResponse[0]['disease'].length == 0) {
             await http.post(
               Uri.parse(
                   'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user'),
@@ -53,18 +56,19 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => const LoginEdit(),
+                settings: RouteSettings(arguments: user.id),
               ),
             );
           } else {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => MainHome(user!.id),
-                settings: RouteSettings(arguments: [
-                  user?.id,
-                  user?.photoUrl,
-                  user?.displayName,
-                  user?.email
-                ]),
+                builder: (context) => Navigation(user!.id),
+                // settings: RouteSettings(arguments: [
+                //   user?.id,
+                //   user?.photoUrl,
+                //   user?.displayName,
+                //   user?.email
+                // ]),
               ),
             );
           }
@@ -86,12 +90,12 @@ class _LoginScreenState extends State<LoginScreen> {
         print(user!.id);
         sendData(user.id);
 
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const LoginEdit(),
-            settings: RouteSettings(arguments: user.id),
-          ),
-        );
+        // Navigator.of(context).pushReplacement(
+        //   MaterialPageRoute(
+        //     builder: (context) => const LoginEdit(),
+        //     settings: RouteSettings(arguments: user.id),
+        //   ),
+        // );
       } else {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(

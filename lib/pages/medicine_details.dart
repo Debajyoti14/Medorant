@@ -44,7 +44,6 @@ class _MedicineDetailsState extends State<MedicineDetails> {
     problem = finalData['severity'];
     altMed = finalData['alternative_medicines'];
     prep = finalData['prescription'];
-    print(mrp);
 
     if (problem['mediumSeverity']['count'].toString() == "null") {
       mid = "0";

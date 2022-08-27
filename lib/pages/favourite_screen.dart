@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/themes.dart';
-
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen(String args, {Key? key}) : super(key: key);
 

@@ -29,7 +29,7 @@ class _MainHomeState extends State<MainHome> {
       email = details['email'];
       img1 = details['image'];
       // print(details['img']);
-      setState(() {});
+      if (mounted) setState(() {});
     }
 
     getDetails(widget.args);
