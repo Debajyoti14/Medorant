@@ -5,7 +5,6 @@ import 'package:medorant/utils/themes.dart';
 import 'package:http/http.dart' as http;
 
 import '../widgets/disease_tag.dart';
-import 'main_home.dart';
 import 'navigation.dart';
 
 class LoginDisease extends StatefulWidget {
@@ -168,7 +167,7 @@ class _LoginDiseaseState extends State<LoginDisease> {
                     sendData(args as String);
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
-                        builder: (context) => Navigation(args as String),
+                        builder: (context) => Navigation(args),
                         // settings: RouteSettings(arguments: args),
                       ),
                     );

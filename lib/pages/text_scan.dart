@@ -53,7 +53,6 @@ class _ScanState extends State<Scan> {
   @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context)!.settings.arguments as String;
-    print(id);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

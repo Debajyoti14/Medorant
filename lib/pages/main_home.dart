@@ -22,7 +22,7 @@ class _MainHomeState extends State<MainHome> {
   Widget build(BuildContext context) {
     getDetails(String id) async {
       var data = await http.get(Uri.parse(
-          'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user/${id}'));
+          'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user/$id'));
       var details = jsonDecode(data.body.substring(1, data.body.length - 1));
 
       name = details['name'];

@@ -257,7 +257,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 4),
                                   child: Text(
-                                    "◉  ${e}",
+                                    "◉  $e",
                                     textAlign: TextAlign.start,
                                     style: const TextStyle(fontSize: 16),
                                   ),
@@ -293,7 +293,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                         onPressed: () {

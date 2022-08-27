@@ -14,15 +14,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     final items = <Widget>[
-      Icon(Icons.home, size: 30),
-      Icon(Icons.timelapse_outlined, size: 30),
-      Icon(Icons.search, size: 30),
-      Icon(Icons.money, size: 30),
-      Icon(Icons.person_off_outlined, size: 30),
+      const Icon(Icons.home, size: 30),
+      const Icon(Icons.timelapse_outlined, size: 30),
+      const Icon(Icons.search, size: 30),
+      const Icon(Icons.money, size: 30),
+      const Icon(Icons.person_off_outlined, size: 30),
     ];
     return Theme(
       data: Theme.of(context)
-          .copyWith(iconTheme: IconThemeData(color: Colors.white)),
+          .copyWith(iconTheme: const IconThemeData(color: Colors.white)),
       child: CurvedNavigationBar(
         key: navigationKey,
         height: 60,
@@ -32,7 +32,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         color: const Color.fromARGB(255, 112, 111, 229),
         backgroundColor: Colors.transparent,
         animationCurve: Curves.easeIn,
-        animationDuration: Duration(milliseconds: 100),
+        animationDuration: const Duration(milliseconds: 100),
       ),
     );
   }
