@@ -31,7 +31,6 @@ class _ScanState extends State<Scan> {
     }
     textScanning = false;
     setState(() {});
-    print(scannedText);
   }
 
   void getImage(ImageSource source) async {

@@ -1,13 +1,47 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:medorant/pages/login_screen.dart';
+import 'package:http/http.dart' as http;
 
 import '../api/google_signin_api.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen(String userId, {Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  final String userId;
+  const ProfileScreen(this.userId, {Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  var name = '';
+  var email = '';
+  var img1 =
+      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  var age = '';
+  var diseases = [];
+  getDetails(String id) async {
+    var data = await http.get(Uri.parse(
+        'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user/$id'));
+    var details = jsonDecode(data.body.substring(1, data.body.length - 1));
+
+    name = details['name'];
+    email = details['email'];
+    img1 = details['image'];
+    age = details['age'].toString();
+    diseases = details['disease'];
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDetails(widget.userId);
+  }
 
   @override
   Widget build(BuildContext context) {
+    getDetails(widget.userId);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -25,19 +59,22 @@ class ProfileScreen extends StatelessWidget {
               height: 20,
             ),
             ListTile(
-              leading: const CircleAvatar(
-                backgroundImage: AssetImage('assets/images/img1.jpg'),
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(img1),
                 radius: 30,
               ),
-              title: const Text(
-                'Roshan Kumar',
-                style: TextStyle(
+              title: Text(
+                name,
+                style: const TextStyle(
                     color: Color.fromARGB(255, 112, 111, 229), fontSize: 18),
               ),
-              subtitle: const Text('Roshan'),
-              trailing: RaisedButton(
+              subtitle: Text(email),
+              trailing: ElevatedButton(
                 onPressed: () {},
-                color: const Color(0xFF706FE5),
+                // color: const Color(0xFF706FE5),
+                style: ElevatedButton.styleFrom(
+                  primary: const Color(0xFF706FE5), // Background color
+                ),
                 child: const Text(
                   'Edit',
                   style: TextStyle(fontSize: 18, color: Colors.white),
@@ -70,12 +107,10 @@ class ProfileScreen extends StatelessWidget {
                               color: Color.fromARGB(255, 215, 215, 236),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6))),
-                          child: Column(children: const [
+                          child: Column(children: [
+                            const Text('Age'),
                             Text(
-                              'Age',
-                            ),
-                            Text(
-                              '21',
+                              age,
                             ),
                           ]),
                         ),
@@ -160,14 +195,15 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(
                     height: 40,
                     width: double.infinity,
-                    child: RaisedButton(
+                    child: ElevatedButton(
                       onPressed: () async {
                         await GoogleSignInApi.logout();
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => const LoginScreen()));
                       },
-                      elevation: 0,
-                      color: Colors.red,
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.red, // Background color
+                      ),
                       child: const Text(
                         'Log Out',
                         style: TextStyle(
@@ -179,7 +215,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    child: FlatButton(
+                    child: TextButton(
                       child: const Text(
                         'Give us feedback',
                         style: TextStyle(

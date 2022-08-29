@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:medorant/pages/profile_screen.dart';
 import 'package:medorant/pages/reward_screen.dart';
 import 'package:medorant/pages/search_screen.dart';
-import 'package:medorant/utils/themes.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

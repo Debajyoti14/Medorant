@@ -31,7 +31,6 @@ class _LoginScreenState extends State<LoginScreen> {
               'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user/$id';
           final response = await http.get(Uri.parse(url));
           final getResponse = json.decode(response.body);
-          print(getResponse[0]['disease'].length);
           if (getResponse[0]['disease'].length == 0) {
             await http.post(
               Uri.parse(
@@ -48,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 "gender": '',
                 "age": null,
                 "name": user.displayName.toString(),
-                "email": user.email,
+                "email": user.email.toString(),
                 "image": user.photoUrl.toString()
               }),
             );
@@ -72,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           }
         } catch (e) {
-          print(e);
+          rethrow;
         }
       }
 
@@ -86,15 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
       }
 
       if (_isLoggedIn == true) {
-        print(user!.id);
-        sendData(user.id);
-
-        // Navigator.of(context).pushReplacement(
-        //   MaterialPageRoute(
-        //     builder: (context) => const LoginEdit(),
-        //     settings: RouteSettings(arguments: user.id),
-        //   ),
-        // );
+        sendData(user?.id as String);
       } else {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(

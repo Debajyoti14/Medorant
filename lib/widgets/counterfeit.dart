@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Counter extends StatelessWidget {
-  final low;
-  final mid;
-  final high;
-  final safeCheck;
+  final int low;
+  final int mid;
+  final int high;
+  final bool safeCheck;
   const Counter(this.high, this.mid, this.low, this.safeCheck, {Key? key})
       : super(key: key);
 

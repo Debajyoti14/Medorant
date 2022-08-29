@@ -67,8 +67,6 @@ class _MedicineDetailsState extends State<MedicineDetails> {
   @override
   Widget build(BuildContext context) {
     final data = ModalRoute.of(context)!.settings.arguments as List;
-    print(data[1]);
-    print(data[0]);
     getDetails(data[1], data[0]);
 
     return Scaffold(
@@ -94,9 +92,9 @@ class _MedicineDetailsState extends State<MedicineDetails> {
               const SizedBox(height: 25),
               Column(children: [
                 Counter(
-                  high,
-                  mid,
-                  low,
+                  int.parse(high),
+                  int.parse(mid),
+                  int.parse(low),
                   counterfeit,
                 ),
               ]),
@@ -224,6 +222,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                                       style: const TextStyle(fontSize: 16),
                                     ),
                                     onTap: () {
+                                      // ignore: deprecated_member_use
                                       launch(e['link']);
                                     },
                                   ),
@@ -296,6 +295,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                     width: double.infinity,
                     child: ElevatedButton(
                         onPressed: () {
+                          // ignore: deprecated_member_use
                           launch('https://medorant-reward-system.vercel.app/');
                         },
                         child: const Text('Get your rewards')),
