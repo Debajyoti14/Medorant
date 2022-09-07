@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () {},
                 // color: const Color(0xFF706FE5),
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xFF706FE5), // Background color
+                  backgroundColor: const Color(0xFF706FE5), // Background color
                 ),
                 child: const Text(
                   'Edit',
@@ -202,7 +202,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             builder: (context) => const LoginScreen()));
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.red, // Background color
+                        backgroundColor: Colors.red, // Background color
                       ),
                       child: const Text(
                         'Log Out',

@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: ElevatedButton(
                           onPressed: SignIn,
                           style: ElevatedButton.styleFrom(
-                              primary:
+                              backgroundColor:
                                   AppTheme.lightTheme(context).primaryColor),
                           child: const Text(
                             'Login with Google',

@@ -99,8 +99,8 @@ class _ScanState extends State<Scan> {
                       padding: const EdgeInsets.only(top: 10),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          onPrimary: Colors.grey,
+                          foregroundColor: Colors.grey,
+                          backgroundColor: Colors.white,
                           shadowColor: Colors.grey[400],
                           elevation: 10,
                           shape: RoundedRectangleBorder(
@@ -137,8 +137,8 @@ class _ScanState extends State<Scan> {
                       padding: const EdgeInsets.only(top: 10),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          onPrimary: Colors.grey,
+                          foregroundColor: Colors.grey,
+                          backgroundColor: Colors.white,
                           shadowColor: Colors.grey[400],
                           elevation: 10,
                           shape: RoundedRectangleBorder(
