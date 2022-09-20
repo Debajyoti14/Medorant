@@ -117,7 +117,8 @@ class _LoginDiseaseState extends State<LoginDisease> {
             //   },
             //   onFieldSubmitted: doSomething,
             // ),
-            DropdownButton<String>(
+            DropdownButtonFormField<String>(
+              isExpanded: true,
               hint: const Text('Diseases'), // Not necessary for Option 1
               items: diseases.map((String value) {
                 return DropdownMenuItem<String>(

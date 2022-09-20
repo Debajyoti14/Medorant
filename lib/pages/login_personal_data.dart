@@ -75,62 +75,52 @@ class _LoginEditState extends State<LoginEdit> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      Image.asset('assets/images/personal.png'),
                       const SizedBox(
                         height: 20,
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: TextFormField(
-                              keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                labelText: "Age",
-                                border: OutlineInputBorder(),
-                              ),
-                              onChanged: (value) =>
-                                  setState(() => age = int.parse(value)),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Age can't be Empty";
-                                } else {
-                                  return null;
-                                }
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Flexible(
-                            child: DropdownButton<String>(
-                              hint: const Text(
-                                  'Gender'), // Not necessary for Option 1
-                              value: _selectedOption,
-                              items: <String>[
-                                'Male',
-                                'Female',
-                                'prefer not to say'
-                              ].map((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                              onChanged: (val) {
-                                setState(() {
-                                  _selectedOption = val!;
-                                });
-                              },
-                            ),
-                          )
-                        ],
+                      TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          labelText: "Age",
+                          border: OutlineInputBorder(),
+                        ),
+                        onChanged: (value) =>
+                            setState(() => age = int.parse(value)),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Age can't be Empty";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
+                      ),
+                      DropdownButtonFormField<String>(
+                        isExpanded: true,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        hint:
+                            const Text('Gender'), // Not necessary for Option 1
+                        value: _selectedOption,
+                        items: <String>['Male', 'Female', 'prefer not to say']
+                            .map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedOption = val!;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        height: 40,
                       ),
                       SizedBox(
                         child: ElevatedButton(
@@ -159,7 +149,6 @@ class _LoginEditState extends State<LoginEdit> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Image.asset('assets/images/personal.png')
                     ],
                   ),
                 ),
