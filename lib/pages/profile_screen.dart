@@ -20,6 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
   var age = '';
   var diseases = [];
+  var gender = '';
   getDetails(String id) async {
     var data = await http.get(Uri.parse(
         'https://8g34ra4qq2.execute-api.ap-south-1.amazonaws.com/dev/user/$id'));
@@ -30,6 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     img1 = details['image'];
     age = details['age'].toString();
     diseases = details['disease'];
+    gender = details['gender'];
     if (mounted) setState(() {});
   }
 
@@ -68,7 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: const TextStyle(
                     color: Color.fromARGB(255, 112, 111, 229), fontSize: 18),
               ),
-              subtitle: Text(email),
+              // subtitle: Text(email),
               trailing: ElevatedButton(
                 onPressed: () {},
                 // color: const Color(0xFF706FE5),
@@ -108,7 +110,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6))),
                           child: Column(children: [
-                            const Text('Age'),
+                            const Text(
+                              'Age',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 112, 111, 229),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
                             Text(
                               age,
                             ),
@@ -125,12 +134,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               color: Color.fromARGB(255, 215, 215, 236),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6))),
-                          child: Column(children: const [
-                            Text(
-                              'Age',
+                          child: Column(children: [
+                            const Text(
+                              'Gender',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 112, 111, 229),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                             Text(
-                              '21',
+                              gender,
                             ),
                           ]),
                         ),
@@ -145,50 +159,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       decoration: const BoxDecoration(
                           color: Color.fromARGB(255, 215, 215, 236),
                           borderRadius: BorderRadius.all(Radius.circular(6))),
-                      child: Column(children: const [
-                        Text(
+                      child: Column(children: [
+                        const Text(
                           'Disease',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 112, 111, 229),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                        Text(
-                          'Diabetes',
-                        ),
-                        Text(
-                          'Diabetes',
-                        ),
-                        Text(
-                          'Diabetes',
-                        ),
+                        for (var item in diseases) Text(item)
                       ]),
                     ),
                   ]),
-                  const SizedBox(height: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 215, 215, 236),
-                            borderRadius: BorderRadius.all(Radius.circular(6))),
-                        child: Column(children: const [
-                          Text(
-                            'Disease',
-                            textAlign: TextAlign.left,
-                          ),
-                          Text(
-                            'Diabetes',
-                          ),
-                          Text(
-                            'Diabetes',
-                          ),
-                          Text(
-                            'Diabetes',
-                          ),
-                        ]),
-                      ),
-                    ],
-                  ),
                   const SizedBox(
                     height: 40,
                   ),
